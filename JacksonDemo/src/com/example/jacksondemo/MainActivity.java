@@ -32,7 +32,7 @@ public class MainActivity extends Activity {
 			InputStream json = getAssets().open("test1.json");
 			String jsonStr = inputStream2String(json);
 			JSONObject obj = JSONUtil.createJSONObject(jsonStr);
-			Test1Entry u = JacksonWrapper.fromJSONObject(obj, Test1Entry.class);
+			Test1Entry u = JacksonWrapper.json2Bean(obj, Test1Entry.class);
 			TextView tv = (TextView) findViewById(R.id.test1);
 			tv.setText(u.toString());
 			
@@ -45,7 +45,7 @@ public class MainActivity extends Activity {
 			InputStream json = getAssets().open("test.json");
 			saveToFile(getFilesDir()+"/test", json);
 			File f = new File(getFilesDir()+"/test");
-			TestEntry u = JacksonWrapper.fromJSONFile(f, TestEntry.class);
+			TestEntry u = JacksonWrapper.file2Bean(f, TestEntry.class);
 			TextView tv = (TextView) findViewById(R.id.test);
 			tv.setText(u.toString());
 			
